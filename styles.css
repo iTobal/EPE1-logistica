@@ -1,0 +1,509 @@
+/* ==========================================================================
+   Variables globales y reset
+   Colores, sombra y caja de tamaño usados en toda la página.
+   ========================================================================== */
+:root {
+  --navy: #102a43;
+  --blue: #1479ff;
+  --blue-dark: #0b5dcc;
+  --bg: #f4f7fb;
+  --card: #fff;
+  --ink: #172b4d;
+  --muted: #66768a;
+  --line: #dbe4ef;
+  --green: #198754;
+  --green-soft: #e7f6ed;
+  --amber: #b76e00;
+  --amber-soft: #fff4d8;
+  --red: #bd3c38;
+  --red-soft: #fdebea;
+  --shadow: 0 10px 28px rgba(16, 42, 67, 0.08);
+}
+* {
+  box-sizing: border-box;
+}
+/* ==========================================================================
+   Base del documento
+   Tipografía y ancho general de contenido.
+   ========================================================================== */
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font:
+    15px/1.5 Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+.container {
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+}
+/* ==========================================================================
+   Encabezado del sitio
+   Franja superior con título y estado del sistema.
+   ========================================================================== */
+.site-header {
+  background: linear-gradient(120deg, #102a43, #174e7a);
+  color: #fff;
+  padding: 34px 0 38px;
+}
+.header-content {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+.eyebrow,
+.section-kicker,
+.card-label {
+  margin: 0 0 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 11px;
+  font-weight: 800;
+}
+.eyebrow {
+  color: #a8d3ff;
+}
+.site-header h1 {
+  margin: 0;
+  font-size: 42px;
+  line-height: 1;
+}
+.subtitle {
+  margin: 10px 0 0;
+  color: #d9ebff;
+  font-size: 16px;
+}
+.header-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  padding: 9px 14px;
+  font-size: 13px;
+}
+.status-dot,
+.state-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #52d18a;
+}
+/* ==========================================================================
+   Bloque de introducción
+   Texto de contexto y contador de interacciones evaluables.
+   ========================================================================== */
+.intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 34px 0 25px;
+}
+.section-kicker {
+  color: var(--blue);
+}
+h2 {
+  font-size: 27px;
+  margin: 0 0 8px;
+}
+.intro p:not(.section-kicker) {
+  max-width: 720px;
+  margin: 0;
+  color: var(--muted);
+}
+.intro-note {
+  min-width: 130px;
+  text-align: center;
+  border-left: 1px solid var(--line);
+  padding-left: 28px;
+}
+.intro-note strong {
+  display: block;
+  font-size: 34px;
+  color: var(--blue);
+  line-height: 1;
+}
+.intro-note span {
+  font-size: 12px;
+  color: var(--muted);
+}
+/* ==========================================================================
+   Grilla y estructura de tarjetas
+   Distribución en dos columnas y estilo base de cada tarjeta numerada.
+   ========================================================================== */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  padding-bottom: 40px;
+}
+.card {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 24px 24px 23px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.card-wide {
+  grid-column: span 2;
+}
+.card-number {
+  position: absolute;
+  right: 18px;
+  top: 14px;
+  color: #e4ebf4;
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1;
+}
+.card-content {
+  position: relative;
+  z-index: 1;
+}
+.card-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 9px;
+}
+.icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: #eaf3ff;
+  color: var(--blue);
+  font-weight: 800;
+}
+.card-label {
+  color: var(--blue);
+  font-size: 10px;
+}
+.card h3 {
+  font-size: 18px;
+  margin: 0;
+}
+.card-description {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0 0 16px;
+}
+.result-box,
+.preview-box,
+.calculation-result,
+.hidden-detail {
+  background: #f7faff;
+  border: 1px solid #d9e9fb;
+  border-radius: 9px;
+  padding: 12px;
+  margin-bottom: 13px;
+}
+/* ==========================================================================
+   Botones
+   Variante primaria, secundaria y "ghost" usadas en las tarjetas.
+   ========================================================================== */
+.button {
+  border: 0;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 750;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.button:hover {
+  transform: translateY(-1px);
+}
+.button-primary {
+  background: var(--blue);
+  color: white;
+}
+.button-primary:hover {
+  background: var(--blue-dark);
+}
+.button-secondary {
+  background: #eaf3ff;
+  color: var(--blue-dark);
+}
+.button-ghost {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--line);
+}
+/* ==========================================================================
+   Estados visuales (Interacción 02)
+   Clases que alternan entre ruta disponible y ruta pausada.
+   ========================================================================== */
+.state-display {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  padding: 11px 12px;
+  margin-bottom: 13px;
+  font-weight: 700;
+  font-size: 13px;
+}
+.state-active {
+  background: var(--green-soft);
+  color: var(--green);
+}
+.state-paused {
+  background: var(--amber-soft);
+  color: var(--amber);
+}
+.state-paused .state-dot {
+  background: #e8a52b;
+}
+/* ==========================================================================
+   Contador operativo (Interacción 03)
+   Botones + / − y valor numérico de paquetes.
+   ========================================================================== */
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.counter strong {
+  font-size: 34px;
+  min-width: 42px;
+  text-align: center;
+}
+.counter-button {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--blue);
+  font-size: 22px;
+  cursor: pointer;
+}
+.helper-text {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 3px;
+}
+.hidden-detail {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 13px;
+}
+/* ==========================================================================
+   Controles de formulario
+   Inputs, select y textarea compartidos por varias tarjetas.
+   ========================================================================== */
+.control {
+  display: block;
+  width: 100%;
+  border: 1px solid #cbd8e6;
+  border-radius: 8px;
+  background: white;
+  color: var(--ink);
+  font: inherit;
+  padding: 10px 11px;
+  margin: 6px 0 12px;
+  outline: none;
+}
+.control:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(20, 121, 255, 0.12);
+}
+label {
+  font-weight: 700;
+  font-size: 12px;
+}
+.preview-box {
+  font-size: 13px;
+  color: var(--muted);
+}
+.preview-box strong {
+  color: var(--ink);
+}
+/* ==========================================================================
+   Rango y barra de progreso (Interacción 07)
+   Porcentaje textual sincronizado con el ancho de la barra.
+   ========================================================================== */
+.progress-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 10px 0 8px;
+}
+.progress-meta strong {
+  font-size: 34px;
+  color: var(--blue);
+}
+.progress-meta span {
+  color: var(--muted);
+  font-size: 12px;
+}
+.range {
+  width: 100%;
+  accent-color: var(--blue);
+  margin: 0 0 12px;
+}
+.progress-track {
+  height: 10px;
+  background: #e8eef5;
+  border-radius: 99px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #1479ff, #5da8ff);
+  border-radius: 99px;
+  transition: width 0.2s;
+}
+/* ==========================================================================
+   Tareas dinámicas (Interacción 08)
+   Formulario en línea y lista donde se agregan/eliminan nodos <li>.
+   ========================================================================== */
+.inline-form {
+  display: flex;
+  gap: 8px;
+}
+.inline-form .control {
+  margin: 0;
+}
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0 0;
+  display: grid;
+  gap: 8px;
+}
+.task-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: #f7f9fc;
+  padding: 9px 11px;
+  border-radius: 7px;
+  font-size: 13px;
+}
+.delete-task {
+  border: 0;
+  background: transparent;
+  color: var(--red);
+  font-size: 11px;
+  cursor: pointer;
+}
+/* ==========================================================================
+   Colección filtrable de despachos (Interacción 09)
+   Tarjetas de estado (entregado, pendiente, incidencia) y mensaje vacío.
+   ========================================================================== */
+.shipment-list {
+  display: grid;
+  gap: 8px;
+}
+.shipment {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f7f9fc;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
+}
+.shipment-status {
+  min-width: 75px;
+  text-align: center;
+  border-radius: 99px;
+  padding: 3px 7px;
+  font-size: 10px;
+  font-weight: 800;
+}
+.delivered {
+  background: var(--green-soft);
+  color: var(--green);
+}
+.pending {
+  background: var(--amber-soft);
+  color: var(--amber);
+}
+.issue {
+  background: var(--red-soft);
+  color: var(--red);
+}
+.empty-message {
+  color: var(--muted);
+  font-size: 13px;
+}
+/* ==========================================================================
+   Validación de formulario (Interacción 10)
+   Mensajes de error y confirmación mostrados dentro de la página.
+   ========================================================================== */
+.form-message {
+  font-size: 13px;
+  font-weight: 700;
+  margin: 12px 0 0;
+}
+.form-success {
+  color: var(--green);
+}
+.form-error {
+  color: var(--red);
+}
+/* ==========================================================================
+   Pie de página
+   ========================================================================== */
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 22px 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+/* ==========================================================================
+   Adaptación a pantallas angostas
+   Apila el encabezado, la introducción y las tarjetas en una sola columna.
+   ========================================================================== */
+@media (max-width: 760px) {
+  .container {
+    width: min(100% - 28px, 560px);
+  }
+  .header-content,
+  .intro {
+    display: block;
+  }
+  .header-status {
+    display: inline-flex;
+    margin-top: 20px;
+  }
+  .intro-note {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    text-align: left;
+    padding: 16px 0 0;
+    margin-top: 20px;
+  }
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .card-wide {
+    grid-column: span 1;
+  }
+  .site-header h1 {
+    font-size: 34px;
+  }
+  .inline-form {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
