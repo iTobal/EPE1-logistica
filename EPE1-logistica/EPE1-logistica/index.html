@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Panel interactivo de operaciones logísticas desarrollado con HTML, CSS y JavaScript.">
+  <title>RutaControl | Panel de operaciones</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-content">
+      <div>
+        <p class="eyebrow">EPE1 · Desarrollo Full Stack</p>
+        <h1>RutaControl</h1>
+        <p class="subtitle">Panel interactivo para operaciones de última milla</p>
+      </div>
+      <div class="header-status" aria-label="Estado del sistema">
+        <span class="status-dot"></span>
+        Sistema operativo
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="intro" aria-labelledby="intro-title">
+      <div>
+        <p class="section-kicker">Centro de control</p>
+        <h2 id="intro-title">Seguimiento diario de despachos</h2>
+        <p>Explora cada tarjeta para demostrar cómo JavaScript modifica el DOM sin recargar la página. Los datos son temporales y se mantienen solamente mientras esta pestaña permanezca abierta.</p>
+      </div>
+      <div class="intro-note"><strong>10</strong><span>interacciones evaluables</span></div>
+    </section>
+
+    <section class="cards-grid" aria-label="Interacciones JavaScript">
+      <!-- Interacción 01: actualización de estado mediante evento click -->
+      <article class="card card-wide">
+        <div class="card-number">01</div>
+        <div class="card-content">
+          <div class="card-heading"><span class="icon">↻</span><div><p class="card-label">Comunicación operativa</p><h3>Actualizar mensaje de turno</h3></div></div>
+          <p class="card-description">Presiona el botón para reemplazar el mensaje de coordinación del equipo.</p>
+          <div class="result-box" id="mensajeOperativo">Esperando actualización del turno.</div>
+          <button class="button button-primary" id="btnActualizarMensaje" type="button">Actualizar mensaje</button>
+        </div>
+      </article>
+
+      <!-- Interacción 02: cambio de estado booleano y clase CSS -->
+      <article class="card">
+        <div class="card-number">02</div>
+        <div class="card-content">
+          <div class="card-heading"><span class="icon">◉</span><div><p class="card-label">Estado de ruta</p><h3>Alternar disponibilidad</h3></div></div>
+          <p class="card-description">Cambia entre ruta disponible y ruta pausada.</p>
+          <div class="state-display state-active" id="estadoRuta"><span class="state-dot"></span><span>Ruta disponible</span></div>
+          <button class="button button-secondary" id="btnCambiarEstado" type="button">Pausar ruta</button>
+        </div>
+      </article>
+
+      <!-- Interacción 03: contador operativo en variable y DOM -->
+      <article class="card">
+        <div class="card-number">03</div>
+        <div class="card-content">
+          <div class="card-heading"><span class="icon">▦</span><div><p class="card-label">Carga operativa</p><h3>Contador de paquetes</h3></div></div>
+          <p class="card-description">Suma o resta paquetes de la carga temporal del centro.</p>
+          <div class="counter"><button class="counter-button" id="btnRestarPaquete" type="button" aria-label="Restar paquete">−</button><strong id="contadorPaquetes">24</strong><button class="counter-button" id="btnSumarPaquete" type="button" aria-label="Sumar paquete">+</button></div>
+          <span class="helper-text">paquetes en preparación</span>
+        </div>
+      </article>
+
+      <!-- Interacción 04: mostrar y ocultar contenido -->
+      <article class="card">
+        <div class="card-number">04</div>
+        <div class="card-content">
+          <div class="card-heading"><span class="icon">◌</span><div><p class="card-label">Información de ruta</p><h3>Mostrar u ocultar detalle</h3></div></div>
+          <p class="card-description">Controla la visibilidad de la información operativa adicional.</p>
+          <button class="button button-secondary" id="btnDetalle" type="button" aria-expanded="false" aria-controls="detalleRuta">Mostrar detalle</button>
+          <div class="hidden-detail" id="detalleRuta" hidden><strong>Ruta R-204</strong><br>Concepción Centro · 18 despachos · salida 14:30</div>
+        </div>
+      </article>
+
+      <!-- Interacción 05: entrada de texto, limpieza y reflejo inmediato -->
+      <article class="card card-wide">
+        <div class="card-number">05</div>
+        <div class="card-content">
+          <div class="card-heading"><span class="icon">Aa</span><div><p class="card-label">Observación del operador</p><h3>Vista previa en tiempo real</h3></div></div>
+          <p class="card-description">Escribe una nota y observa cómo aparece inmediatamente en la tarjeta.</p>
+          <label for="notaOperador">Nota temporal</label>
+          <input class="control" id="notaOperador" type="text" maxlength="80" placeholder="Ej.: Cliente solicita llamar antes de entregar">
+          <div class="preview-box">Vista previa: <strong id="vistaNota">Tu nota aparecerá aquí.</strong></div>
+          <button class="button button-ghost" id="btnLimpiarNota" type="button">Limpiar nota</button>
+        </div>
+      </article>
+
+      <!-- Interacción 06: select, conversión a número y cálculo -->
+      <article class="card">
+        <div class="card-number">06</div>
+        <div class="card-content">
+          <div class="card-heading"><span class="icon">%</span><div><p class="card-label">Cálculo de rendimiento</p><h3>Estimar entregas</h3></div></div>
+          <p class="card-description">Selecciona una zona y calcula las entregas exitosas.</p>
+          <label for="zonaSelect">Zona de reparto</label>
+          <select class="control" id="zonaSelect"><option value="12">Zona Norte · 12 asignadas</option><option value="20">Zona Centro · 20 asignadas</option><option value="8">Zona Sur · 8 asignadas</option></select>
+          <label for="tasaExito">Tasa de éxito (%)</label>
+          <input class="control" id="tasaExito" type="number" min="0" max="100" value="90">
+          <div class="calculation-result" id="resultadoCalculo">Resultado: 11 entregas exitosas</div>
+          <button class="button button-primary" id="btnCalcular" type="button">Calcular</button>
+        </div>
+      </article>
+
+      <!-- Interacción 07: input range, porcentaje y barra visual -->
+      <article class="card">
+        <div class="card-number">07</div>
+        <div class="card-content">
+          <div class="card-heading"><span class="icon">▰</span><div><p class="card-label">Progreso de despacho</p><h3>Nivel de avance</h3></div></div>
+          <p class="card-description">Mueve el control para representar el avance de la ruta.</p>
+          <div class="progress-meta"><strong id="progresoTexto">65%</strong><span>avance de ruta</span></div>
+          <input class="range" id="rangoProgreso" type="range" min="0" max="100" value="65">
+          <div class="progress-track"><div class="progress-fill" id="barraProgreso" style="width: 65%"></div></div>
+        </div>
+      </article>
+
+      <!-- Interacción 08: creación y eliminación dinámica de nodos -->
+      <article class="card">
+        <div class="card-number">08</div>
+        <div class="card-content">
+          <div class="card-heading"><span class="icon">+</span><div><p class="card-label">Tareas pendientes</p><h3>Crear y eliminar tareas</h3></div></div>
+          <p class="card-description">Agrega tareas al listado y elimínalas después.</p>
+          <div class="inline-form"><input class="control" id="nuevaTarea" type="text" maxlength="50" placeholder="Nueva tarea"><button class="button button-primary" id="btnAgregarTarea" type="button">Agregar</button></div>
+          <ul class="task-list" id="listaTareas"><li><span>Verificar etiquetas de despacho</span><button type="button" class="delete-task">Eliminar</button></li><li><span>Confirmar vehículo R-204</span><button type="button" class="delete-task">Eliminar</button></li></ul>
+        </div>
+      </article>
+
+      <!-- Interacción 09: filtrado de colección visible -->
+      <article class="card card-wide">
+        <div class="card-number">09</div>
+        <div class="card-content">
+          <div class="card-heading"><span class="icon">⌕</span><div><p class="card-label">Monitoreo de servicios</p><h3>Filtrar colección de despachos</h3></div></div>
+          <p class="card-description">Escribe un estado o destinatario para filtrar los despachos sin recargar.</p>
+          <label for="filtroDespachos">Buscar despacho</label>
+          <input class="control" id="filtroDespachos" type="search" placeholder="Ej.: pendiente, Valentina o R-204">
+          <div class="shipment-list" id="listaDespachos"><div class="shipment" data-search="entregado camila r-201"><span class="shipment-status delivered">Entregado</span><span>Camila Soto · R-201</span></div><div class="shipment" data-search="pendiente matias r-204"><span class="shipment-status pending">Pendiente</span><span>Matías Rojas · R-204</span></div><div class="shipment" data-search="incidencia valentina r-209"><span class="shipment-status issue">Incidencia</span><span>Valentina Díaz · R-209</span></div></div>
+          <p class="empty-message" id="sinResultados" hidden>No se encontraron despachos.</p>
+        </div>
+      </article>
+
+      <!-- Interacción 10: formulario, preventDefault y validación -->
+      <article class="card">
+        <div class="card-number">10</div>
+        <div class="card-content">
+          <div class="card-heading"><span class="icon">✓</span><div><p class="card-label">Registro de incidencia</p><h3>Validar formulario</h3></div></div>
+          <p class="card-description">Completa los campos para validar un nuevo registro operativo.</p>
+          <form id="formIncidencia" novalidate>
+            <label for="tipoIncidencia">Tipo de incidencia</label><select class="control" id="tipoIncidencia"><option value="">Selecciona una opción</option><option>Dirección incorrecta</option><option>Cliente ausente</option><option>Vehículo con retraso</option></select>
+            <label for="detalleIncidencia">Detalle</label><textarea class="control" id="detalleIncidencia" rows="3" maxlength="160" placeholder="Describe brevemente la situación"></textarea>
+            <button class="button button-primary" type="submit">Registrar incidencia</button>
+            <p class="form-message" id="mensajeFormulario" role="alert"></p>
+          </form>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p>RutaControl · Prototipo académico HTML5 + CSS + JavaScript · Datos temporales</p></div></footer>
+  <script src="app.js"></script>
+</body>
+</html>
