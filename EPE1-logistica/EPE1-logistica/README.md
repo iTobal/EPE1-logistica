@@ -50,4 +50,4 @@ La guía completa para crear el repositorio, realizar commits, trabajar en una r
 - Enviar el formulario vacío y luego enviarlo con datos válidos.
 - Abrir la consola del navegador y confirmar que no aparecen errores rojos.
 
-Proyecto preparado para evaluación EPE1 de IPCHILE.
+Proyecto probado y preparado para la entrega de la evaluación EPE1.
